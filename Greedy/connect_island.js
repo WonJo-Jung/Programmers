@@ -1,3 +1,5 @@
+/*https://velog.io/@kimdukbae/%ED%81%AC%EB%A3%A8%EC%8A%A4%EC%B9%BC-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-Kruskal-Algorithm*/
+
 function solution(n, costs) {
   let parent = new Array(n).fill().map((v, index) => index);
   costs.sort((a,b) => a[2]-b[2]);
