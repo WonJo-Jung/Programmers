@@ -1,43 +1,43 @@
-function perm(numbers, stack, strArr, visited, indexArr) {
+function perm(numbers, stack, indexArr, visited, strArr) {
   let index = stack.at(0).shift();
   visited[index] = true;
-  strArr.push(index);
-  let element = [];
+  indexArr.push(index);
+  let visit_nodes = [];
   visited.map((v, idx) => {
-    if(!v) element.push(idx);
+    if(!v) visit_nodes.push(idx);
   });
-  stack.unshift(element);
+  stack.unshift(visit_nodes);
   while(stack.at(0).length > 0) {
-    perm(numbers, stack, strArr, visited, indexArr);
+    perm(numbers, stack, indexArr, visited, strArr);
     
-    visited[strArr.pop()] = false;
+    visited[indexArr.pop()] = false;
     if(stack.at(0).length == 0) {
       stack.shift();
       return;
     }
   }
   let tmp = [];
-  strArr.forEach(idx => {
+  indexArr.forEach(idx => {
     tmp.push(idx);
-    indexArr.push(JSON.parse(JSON.stringify(tmp)));
+    strArr.push(JSON.parse(JSON.stringify(tmp)));
   });
   stack.shift();
 }
 
 function solution(numbers) {
   numbers = numbers.split("");
-  let strArr = [];
-  let visited = new Array(numbers.length).fill(false);
   let indexArr = [];
+  let visited = new Array(numbers.length).fill(false);
+  let strArr = [];
   for(let i=0; i<numbers.length; i++) {
     let stack = [];
     stack.push([i]);
-    perm(numbers, stack, strArr, visited, indexArr);
+    perm(numbers, stack, indexArr, visited, strArr);
     
     visited[i] = false;
-    strArr = [];    
+    indexArr = [];    
   }
-  let candid = indexArr.map(index => Number(index.reduce((acc, curr) => acc + numbers[curr], "")));
+  let candid = strArr.map(index => Number(index.reduce((acc, curr) => acc + numbers[curr], "")));
 
   // let candid = [];
   // const len = numbers.length;
