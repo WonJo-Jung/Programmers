@@ -4,13 +4,13 @@ function solution(antitired, dungeons) {
   let answer = [];
   for(let i=0; i<dungeons.length; i++) {
     stack.push([i]);
-    find(antitired, dungeons, visited, 0, answer, stack);
+    dfs(antitired, dungeons, visited, 0, answer, stack);
     stack = [];
   }
   return Math.max.apply(null, answer);
 }
 
-function find(antitired, dungeons, visited, local, answer, stack) {
+function dfs(antitired, dungeons, visited, local, answer, stack) {
   let index = stack.at(stack.length-1).shift();
   if(dungeons[index][0] > antitired) {
     answer.push(local);
@@ -27,7 +27,7 @@ function find(antitired, dungeons, visited, local, answer, stack) {
   local++;
 
   while(stack.at(stack.length-1).length > 0) {
-    find(antitired, dungeons, visited, local, answer, stack);
+    dfs(antitired, dungeons, visited, local, answer, stack);
   }
   if(visited.every(v => v)) answer.push(local);
   stack.pop();
