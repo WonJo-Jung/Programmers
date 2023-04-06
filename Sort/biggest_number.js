@@ -1,3 +1,5 @@
+/*https://danminblog.tistory.com/40*/
+
 // function solution(numbers) {
 //   // numbers에 있는 숫자는 모두 문자열로 바꿈과 동시에
 //   // 최대 길이(자리수)를 구한다.
