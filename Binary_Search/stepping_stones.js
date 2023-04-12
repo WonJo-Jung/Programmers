@@ -1,4 +1,8 @@
 /*https://cocook.tistory.com/84*/
+// mid 보다 작은 간격이라면 바위를 제거한 후 처음 바위부터
+// 다시 간격을 쟀어야 했는데 놓침
+// 왜나면 이전 이분탐색 문제 생각(심사관 기준 처리)에 갇혔기 때문.
+// 1~distance 생각은 해냄.
 
 function solution(distance, rocks, n) {
   let left = 1, right = distance;
@@ -12,9 +16,13 @@ function solution(distance, rocks, n) {
     for(const rock of rocks) {
       if(rock - start < mid) count++;
       else start = rock;
+      // 이미 개수를 넘어 섰으니까 중단
       if(count > n) break;
     }
     if(count > n) right = mid - 1;
+    // n과 동일해도 다시 진행하는 이유는 최대를 구해야 하기 때문.
+    // 같은 n에 대해 더 큰 최소값을 얻을 수도 있기 때문.
+    // 다음 결과가 n을 넘어설 수 있기 때문에 mid를 미리 답으로 저장.
     else {
       left = mid + 1;
       answer = mid;
