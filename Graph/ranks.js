@@ -1,3 +1,5 @@
+/*https://born2bedeveloper.tistory.com/45*/
+
 function solution(n, results) {
   let graph = new Array();
   for(let i=0; i<n+1; i++) {
