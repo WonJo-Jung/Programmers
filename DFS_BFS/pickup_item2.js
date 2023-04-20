@@ -35,6 +35,7 @@ function solution(rectangle, startX, startY, endX, endY) {
     prev = new Position(startX, startY);
 
   }
+  
   return Math.min.apply(null, count);
 }
 
